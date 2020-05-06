@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AnimatedBlurField_Example' do
+  pod 'AnimatedBlurField', :path => '../'
+
+  target 'AnimatedBlurField_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
