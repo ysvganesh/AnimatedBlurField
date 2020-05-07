@@ -1,0 +1,16 @@
+PODS:
+  - AnimatedBlurField (0.1.0)
+
+DEPENDENCIES:
+  - AnimatedBlurField (from `../`)
+
+EXTERNAL SOURCES:
+  AnimatedBlurField:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AnimatedBlurField: 9f9f1b3d58b77caa750be2e5fd1100dadc49ec22
+
+PODFILE CHECKSUM: 7e22754736a9ca5dd6ab3a3ed7a27ffdb718cb55
+
+COCOAPODS: 1.8.4

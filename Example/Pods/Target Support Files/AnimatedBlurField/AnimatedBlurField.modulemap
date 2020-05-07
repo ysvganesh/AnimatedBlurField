@@ -1,0 +1,6 @@
+framework module AnimatedBlurField {
+  umbrella header "AnimatedBlurField-umbrella.h"
+
+  export *
+  module * { export * }
+}

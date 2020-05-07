@@ -1,0 +1,22 @@
+{
+  "name": "AnimatedBlurField",
+  "version": "0.1.0",
+  "summary": "A short description of AnimatedBlurField.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Siva/AnimatedBlurField",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Siva": "ysvganesh7@gamil.com"
+  },
+  "source": {
+    "git": "https://github.com/Siva/AnimatedBlurField.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "AnimatedBlurField/Classes/**/*"
+}
