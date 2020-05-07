@@ -324,6 +324,7 @@ open class AnimatedBlurField: UIView {
         let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.bounds
+        blurEffectView.contentView.backgroundColor = UIColor(white: 0.0, alpha: 0.15)
         blurEffectView.tag = 101
         self.addSubview(blurEffectView)
         self.sendSubviewToBack(blurEffectView)
@@ -473,17 +474,17 @@ extension AnimatedBlurField {
         textFieldCenterYConstraint?.constant = 8
         titleLabelLeadingConstraint?.constant = targetTitleLeadingPadding
       
-      UIView.animate(withDuration: 0.3, animations: { [weak self] in
-        self?.titleLabel.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
-        self?.layoutIfNeeded()
-      }) {
-        if $0 {
-          UIView.animate(withDuration: 0.2) {
-            self.titleLabel.alpha = 0.6
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+          self?.titleLabel.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+          self?.layoutIfNeeded()
+        }) {
+          if $0 {
+            UIView.animate(withDuration: 0.2) {
+              self.titleLabel.alpha = 0.6
+            }
+            
           }
-          
         }
-      }
     }
     
     func animateOut() {
@@ -493,18 +494,16 @@ extension AnimatedBlurField {
         textFieldCenterYConstraint?.constant = 0
         titleLabelLeadingConstraint?.constant = 15
       
-        
-      
-      UIView.animate(withDuration: 0.3, animations: { [weak self] in
-        self?.titleLabel.transform = .identity
-        self?.layoutIfNeeded()
-      }) {
-        if $0 {
-          UIView.animate(withDuration: 0.1) {
-            self.titleLabel.alpha = 0.8
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+          self?.titleLabel.transform = .identity
+          self?.layoutIfNeeded()
+        }) {
+          if $0 {
+            UIView.animate(withDuration: 0.1) {
+              self.titleLabel.alpha = 0.8
+            }
           }
         }
-      }
     }
     
     func animateInAlert(_ message: String?) {
