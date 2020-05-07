@@ -63,10 +63,11 @@ class ViewController: UIViewController {
         emailAnimatedField.setUp(with: .email,
                                  delegate: self,
                                  dataSource: self,
-                                 placeHolder: "Write your email",
+                                 placeHolder: "Email",
                                  attributes: [
                                   .foregroundColor: UIColor.init(white: 1.0, alpha: 0.8),
                                   .font: UIFont.systemFont(ofSize: 14)])
+        emailAnimatedField.targetTitleLeadingPadding = 12.0
         emailAnimatedField.tag = 0
         
         usernameAnimatedField.format = format

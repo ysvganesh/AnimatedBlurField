@@ -42,6 +42,8 @@ open class AnimatedBlurField: UIView {
     @IBOutlet weak private var textFieldCenterYConstraint: NSLayoutConstraint?
     @IBOutlet weak private var titleLabelLeadingConstraint: NSLayoutConstraint?
     
+    public var targetTitleLeadingPadding: CGFloat = 5.0
+  
     /// Date picker values
     private var datePicker: UIDatePicker?
     private var initialDate: Date?
@@ -299,6 +301,8 @@ open class AnimatedBlurField: UIView {
     open override func layoutSubviews() {
       super.layoutSubviews()
       self.viewWithTag(101)?.frame = self.bounds
+      
+      if isPlaceholderVisible { animateOut() }
     }
     
     private func commonInit() {
@@ -337,7 +341,12 @@ open class AnimatedBlurField: UIView {
     
     private func setupTitle() {
         titleLabel.text = format.uppercasedTitles ? placeholder.uppercased() : placeholder
-        titleLabel.alpha = format.titleAlwaysVisible ? 1.0 : 0.0
+        //titleLabel.alpha = format.titleAlwaysVisible ? 1.0 : 0.0
+        if format.titleAlwaysVisible {
+          animateIn()
+        }else{
+          animateOut()
+        }
     }
     
     private func setupTextView() {
@@ -462,27 +471,40 @@ extension AnimatedBlurField {
         titleLabelTextViewConstraint?.constant = -5
         titleLabelTextFieldConstraint?.constant = -5
         textFieldCenterYConstraint?.constant = 8
-        titleLabelLeadingConstraint?.constant = 6
+        titleLabelLeadingConstraint?.constant = targetTitleLeadingPadding
       
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.titleLabel.alpha = 0.8
-            self?.titleLabel.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
-            self?.layoutIfNeeded()
+      UIView.animate(withDuration: 0.3, animations: { [weak self] in
+        self?.titleLabel.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+        self?.layoutIfNeeded()
+      }) {
+        if $0 {
+          UIView.animate(withDuration: 0.2) {
+            self.titleLabel.alpha = 0.6
+          }
+          
         }
+      }
     }
     
     func animateOut() {
         isPlaceholderVisible = true
-        titleLabelTextViewConstraint?.constant = -20
-        titleLabelTextFieldConstraint?.constant = -20
+        titleLabelTextViewConstraint?.constant = -(textField.frame.height/2.0 + titleLabel.frame.height/2.0)
+        titleLabelTextFieldConstraint?.constant = -(textField.frame.height/2.0 + titleLabel.frame.height/2.0)
         textFieldCenterYConstraint?.constant = 0
         titleLabelLeadingConstraint?.constant = 15
       
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.titleLabel.alpha = 1.0
-            self?.titleLabel.transform = .identity
-            self?.layoutIfNeeded()
+        
+      
+      UIView.animate(withDuration: 0.3, animations: { [weak self] in
+        self?.titleLabel.transform = .identity
+        self?.layoutIfNeeded()
+      }) {
+        if $0 {
+          UIView.animate(withDuration: 0.1) {
+            self.titleLabel.alpha = 0.8
+          }
         }
+      }
     }
     
     func animateInAlert(_ message: String?) {
