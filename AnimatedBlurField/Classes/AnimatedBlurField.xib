@@ -22,6 +22,7 @@
                 <outlet property="textView" destination="xJJ-jF-Qy7" id="uVa-yd-O5n"/>
                 <outlet property="textViewHeightConstraint" destination="rQZ-Q2-ale" id="wgs-aM-j9g"/>
                 <outlet property="titleLabel" destination="8JV-0O-OxZ" id="aKz-Nn-QQW"/>
+                <outlet property="titleLabelLeadingConstraint" destination="X29-MF-F9Y" id="MXs-my-azq"/>
                 <outlet property="titleLabelTextFieldConstraint" destination="ptq-bv-fcX" id="fzs-jq-xn7"/>
                 <outlet property="titleLabelTextViewConstraint" destination="WMa-aQ-0nK" id="ATk-7v-dUg"/>
             </connections>
@@ -54,8 +55,8 @@
                         <action selector="didPressEyeButton:" destination="-1" eventType="touchUpInside" id="OPj-rE-g69"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JV-0O-OxZ">
-                    <rect key="frame" x="15" y="22" width="241" height="0.0"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8JV-0O-OxZ">
+                    <rect key="frame" x="15" y="22" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -103,7 +104,6 @@
                 <constraint firstItem="8JV-0O-OxZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="X29-MF-F9Y"/>
                 <constraint firstItem="rVP-3W-sB6" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-15" id="jsl-Rh-fRT"/>
                 <constraint firstItem="hXt-nZ-E0Z" firstAttribute="top" secondItem="8JV-0O-OxZ" secondAttribute="bottom" constant="2" id="ptq-bv-fcX"/>
-                <constraint firstItem="8JV-0O-OxZ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-15" id="qgk-zU-GQq"/>
                 <constraint firstItem="E6x-DI-g09" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-15" id="rCC-mE-sjA"/>
                 <constraint firstItem="xJJ-jF-Qy7" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-15" id="vMR-Y3-P8I"/>
                 <constraint firstItem="xJJ-jF-Qy7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="wPQ-mv-2gM"/>

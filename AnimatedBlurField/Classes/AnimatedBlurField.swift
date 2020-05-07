@@ -40,6 +40,7 @@ open class AnimatedBlurField: UIView {
     @IBOutlet private var alertLabelBottomConstraint: NSLayoutConstraint!
   
     @IBOutlet weak private var textFieldCenterYConstraint: NSLayoutConstraint?
+    @IBOutlet weak private var titleLabelLeadingConstraint: NSLayoutConstraint?
     
     /// Date picker values
     private var datePicker: UIDatePicker?
@@ -63,7 +64,7 @@ open class AnimatedBlurField: UIView {
     var isPlaceholderVisible = false {
       didSet {
         
-        guard isPlaceholderVisible else {
+        /*guard isPlaceholderVisible else {
           textField.placeholder = ""
           textField.attributedPlaceholder = nil
           return
@@ -73,7 +74,7 @@ open class AnimatedBlurField: UIView {
           textField.attributedPlaceholder = attributedString
         } else {
           textField.placeholder = placeholder
-        }
+        }*/
       }
     }
 	
@@ -461,8 +462,11 @@ extension AnimatedBlurField {
         titleLabelTextViewConstraint?.constant = -5
         titleLabelTextFieldConstraint?.constant = -5
         textFieldCenterYConstraint?.constant = 8
+        titleLabelLeadingConstraint?.constant = 6
+      
         UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.titleLabel.alpha = 1.0
+            self?.titleLabel.alpha = 0.8
+            self?.titleLabel.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
             self?.layoutIfNeeded()
         }
     }
@@ -472,8 +476,11 @@ extension AnimatedBlurField {
         titleLabelTextViewConstraint?.constant = -20
         titleLabelTextFieldConstraint?.constant = -20
         textFieldCenterYConstraint?.constant = 0
+        titleLabelLeadingConstraint?.constant = 15
+      
         UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.titleLabel.alpha = 0.0
+            self?.titleLabel.alpha = 1.0
+            self?.titleLabel.transform = .identity
             self?.layoutIfNeeded()
         }
     }
