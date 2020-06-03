@@ -37,15 +37,12 @@ class ViewController: UIViewController {
         var format = AnimatedBlurFieldFormat()
         format.titleFont = UIFont(name: "AvenirNext-Regular", size: 12)!
         format.textFont = UIFont(name: "AvenirNext-Regular", size: 14)!
-        format.titleColor = UIColor.init(white: 1.0, alpha: 0.6)
-        format.textColor = .white
-        format.highlightColor = UIColor.init(white: 1.0, alpha: 0.6)
         //format.uppercasedTitles = true
         format.alertColor = .red
         format.alertFieldActive = false
-        format.titleAlwaysVisible = false
         format.titleInVisibleIfFilled = false
         format.alertFont = UIFont(name: "AvenirNext-Regular", size: 14)!
+        //format.visualEffectColorTint = UIColor.systemPink
         
         /*DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
           self.usernameAnimatedField.text = ""
@@ -65,8 +62,8 @@ class ViewController: UIViewController {
                                  dataSource: self,
                                  placeHolder: "Email",
                                  attributes: [
-                                  .foregroundColor: UIColor.init(white: 1.0, alpha: 0.8),
-                                  .font: UIFont.systemFont(ofSize: 14)])
+                                  .foregroundColor: UIColor.yellow,
+                                  .font: UIFont.systemFont(ofSize: 12, weight: .medium)])
         emailAnimatedField.targetTitleLeadingPadding = 12.0
         emailAnimatedField.tag = 0
         
@@ -146,6 +143,7 @@ class ViewController: UIViewController {
                                      attributes: nil)
         //multilineAnimatedField.autocapitalizationType = .words
         multilineAnimatedField.tag = 8
+        multilineAnimatedField.targetTitleLeadingPadding = 12.0
       
       
         defaultField.format = format

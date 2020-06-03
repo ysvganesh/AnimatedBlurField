@@ -37,9 +37,10 @@ open class AnimatedBlurField: UIView {
     @IBOutlet weak private var titleLabelTextViewConstraint: NSLayoutConstraint?
     @IBOutlet weak private var counterLabelTextFieldConstraint: NSLayoutConstraint?
     @IBOutlet weak private var counterLabelTextViewConstraint: NSLayoutConstraint?
-    @IBOutlet private var alertLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var alertLabelBottomConstraint: NSLayoutConstraint!
   
     @IBOutlet weak private var textFieldCenterYConstraint: NSLayoutConstraint?
+    @IBOutlet weak private var textViewTopConstraint: NSLayoutConstraint?
     @IBOutlet weak private var titleLabelLeadingConstraint: NSLayoutConstraint?
     
     public var targetTitleLeadingPadding: CGFloat = 5.0
@@ -50,7 +51,6 @@ open class AnimatedBlurField: UIView {
     private var dateFormat: String?
     private var maxMultiLinesHeight: CGFloat?
     
-    var isShowingTextViewPlaceHolder = false
   
     /// Picker values
     private var numberPicker: UIPickerView?
@@ -63,22 +63,7 @@ open class AnimatedBlurField: UIView {
         return formatter
     }
 	
-    var isPlaceholderVisible = false {
-      didSet {
-        
-        /*guard isPlaceholderVisible else {
-          textField.placeholder = ""
-          textField.attributedPlaceholder = nil
-          return
-        }
-        
-        if let attributedString = attributedPlaceholder {
-          textField.attributedPlaceholder = attributedString
-        } else {
-          textField.placeholder = placeholder
-        }*/
-      }
-    }
+    var isPlaceholderVisible = true
 	
     /// Placeholder
     var placeholder = ""
@@ -108,7 +93,7 @@ open class AnimatedBlurField: UIView {
             }
             if case let AnimatedBlurFieldType.multiline(maxHeight) = type {
                 if var height = maxHeight {
-                  if height < 31 { height = 30 }
+                  if height < 41 { height = 40 }
                   maxMultiLinesHeight = height
                 }
                 showTextView(true)
@@ -244,7 +229,6 @@ open class AnimatedBlurField: UIView {
             guard let text = newValue, text.count > 0 else {
                 textField.text = textField.isHidden ? nil : newValue
                 
-                if !format.titleAlwaysVisible { animateOut() }
                 if !textView.isHidden {
                   textView.text = ""
                   resizeTextViewHeight()
@@ -259,7 +243,6 @@ open class AnimatedBlurField: UIView {
             if !textView.isHidden {
               textView.text = text
               resizeTextViewHeight()
-              isShowingTextViewPlaceHolder = false
               textView.textColor = format.textColor
             }
         }
@@ -286,6 +269,7 @@ open class AnimatedBlurField: UIView {
       setupTitle()
       
       self.type = type
+      setupVisualEffect()
     }
   
     override init(frame: CGRect) {
@@ -317,17 +301,32 @@ open class AnimatedBlurField: UIView {
     }
   
     private func setupView() {
-      backgroundColor = .clear//UIColor(white: 1.0, alpha: 0.15)
+        backgroundColor = .clear
         clipsToBounds = true
+    }
+  
+    private func setupVisualEffect() {
+        self.viewWithTag(101)?.removeFromSuperview()
         
         // Create a blur effect
-        let blurEffect = UIBlurEffect(style: .regular)
+        /*let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.bounds
         blurEffectView.contentView.backgroundColor = UIColor(white: 0.0, alpha: 0.15)
         blurEffectView.tag = 101
         self.addSubview(blurEffectView)
         self.sendSubviewToBack(blurEffectView)
+        self.layer.cornerRadius = 4.0*/
+      
+        let visualEffectView = VisualEffectView(frame: self.bounds)
+        visualEffectView.colorTint = format.visualEffectColorTint
+        visualEffectView.colorTintAlpha = format.visualEffectColorTintAlpha
+        visualEffectView.blurRadius = format.visualEffectBlurRadius
+        visualEffectView.scale = format.visualEffectScale
+        visualEffectView.tag = 101
+        
+        self.addSubview(visualEffectView)
+        self.sendSubviewToBack(visualEffectView)
         self.layer.cornerRadius = 4.0
     }
     
@@ -337,17 +336,10 @@ open class AnimatedBlurField: UIView {
         textField.tintColor = format.textColor
         textField.tag = tag
         textField.backgroundColor = .clear
-        isPlaceholderVisible = !format.titleAlwaysVisible
     }
     
     private func setupTitle() {
         titleLabel.text = format.uppercasedTitles ? placeholder.uppercased() : placeholder
-        //titleLabel.alpha = format.titleAlwaysVisible ? 1.0 : 0.0
-        if format.titleAlwaysVisible {
-          animateIn()
-        }else{
-          animateOut()
-        }
     }
     
     private func setupTextView() {
@@ -356,8 +348,7 @@ open class AnimatedBlurField: UIView {
         textView.tintColor = format.textColor
         textView.tag = tag
         textView.textContainerInset = .zero
-        textView.contentInset = UIEdgeInsets(top: 13, left: -5, bottom: 6, right: 0)
-        if !format.titleAlwaysVisible { isShowingTextViewPlaceHolder = true }
+        textView.contentInset = UIEdgeInsets(top: 3, left: -5, bottom: 6, right: 0)
         textViewDidChange(textView)
         endTextViewPlaceholder()
     }
@@ -472,19 +463,15 @@ extension AnimatedBlurField {
         titleLabelTextViewConstraint?.constant = -5
         titleLabelTextFieldConstraint?.constant = -5
         textFieldCenterYConstraint?.constant = 8
+        textViewTopConstraint?.constant = 20
         titleLabelLeadingConstraint?.constant = targetTitleLeadingPadding
       
-        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+        UIView.animate(withDuration: 0.3) { [weak self] in
           self?.titleLabel.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
           self?.layoutIfNeeded()
-        }) {
-          if $0 {
-            UIView.animate(withDuration: 0.2) {
-              self.titleLabel.alpha = 0.6
-            }
-            
-          }
         }
+      
+      titleLabel.textColor = format.titleColor
     }
     
     func animateOut() {
@@ -492,18 +479,19 @@ extension AnimatedBlurField {
         titleLabelTextViewConstraint?.constant = -(textField.frame.height/2.0 + titleLabel.frame.height/2.0)
         titleLabelTextFieldConstraint?.constant = -(textField.frame.height/2.0 + titleLabel.frame.height/2.0)
         textFieldCenterYConstraint?.constant = 0
+        textViewTopConstraint?.constant = 10
         titleLabelLeadingConstraint?.constant = 15
       
-        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+        UIView.animate(withDuration: 0.3) { [weak self] in
           self?.titleLabel.transform = .identity
           self?.layoutIfNeeded()
-        }) {
-          if $0 {
-            UIView.animate(withDuration: 0.1) {
-              self.titleLabel.alpha = 0.8
-            }
-          }
         }
+      
+      if let attText = attributedPlaceholder {
+        titleLabel.attributedText = attText
+      }else {
+        titleLabel.textColor = format.placeHolderColor
+      }
     }
     
     func animateInAlert(_ message: String?) {
@@ -529,9 +517,8 @@ extension AnimatedBlurField {
     
     func updateCounterLabel() {
       guard format.counterEnabled else { return }
-        let count = isShowingTextViewPlaceHolder ? 0 : textView.text.count
-        let value = (dataSource?.animatedFieldLimit(self) ?? 0) - count
-        counterLabel.text = format.countDownDecrementally ? "\(value)" : "\(count)/\(dataSource?.animatedFieldLimit(self) ?? 0)"
+        let value = (dataSource?.animatedFieldLimit(self) ?? 0) - textView.text.count
+        counterLabel.text = format.countDownDecrementally ? "\(value)" : "\(textView.text.count)/\(dataSource?.animatedFieldLimit(self) ?? 0)"
         if format.counterAnimation {
             counterLabel.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
             UIView.animate(withDuration: 0.3) { [weak self] in
@@ -541,54 +528,38 @@ extension AnimatedBlurField {
     }
     
     func resizeTextViewHeight() {
+      textView.isScrollEnabled = true
         let size = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         if let maxHeight = maxMultiLinesHeight, size.height > maxHeight {
           textView.isScrollEnabled = true
           textView.showsVerticalScrollIndicator = true
           return
         }
+        
+        if size.height < 25 {
+          textView.textContainerInset = .zero
+          textView.isScrollEnabled = false
+          textView.showsVerticalScrollIndicator = false
+          textViewHeightConstraint.constant = 30
+          delegate?.animatedField(self, didResizeHeight: 50)
+          return
+        }
+      
         textViewHeightConstraint.constant = 10 + size.height
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.layoutIfNeeded()
         }
       
-        if textView.isScrollEnabled && size.height < 40 {
-          textView.textContainerInset = .zero
-          textView.isScrollEnabled = false
-          textView.showsVerticalScrollIndicator = false
-        }
-      
-        delegate?.animatedField(self, didResizeHeight: size.height + 10 + titleLabel.frame.size.height)
+        delegate?.animatedField(self, didResizeHeight: size.height + 15 + titleLabel.frame.size.height)
     }
     
     func endTextViewPlaceholder() {
         counterLabel.isHidden = true
-        if textView.text == "" {
-            if format.titleAlwaysVisible { return }
-            isShowingTextViewPlaceHolder = true
-            //textView.text = placeholder
-            if let attributedText = attributedPlaceholder {
-              textView.attributedText = attributedText
-            } else {
-              textView.text = placeholder
-              textView.textColor = UIColor.lightGray.withAlphaComponent(0.8)
-            }
-        }
     }
     
     func beginTextViewPlaceholder() {
         counterLabel.isHidden = !format.counterEnabled
         if format.counterEnabled { updateCounterLabel() }
-        if isShowingTextViewPlaceHolder {
-            isShowingTextViewPlaceHolder = false
-            textView.text = ""
-            textView.textColor = format.textColor
-        }
-    }
-    
-    func highlightField(_ highlight: Bool) {
-        guard let color = format.highlightColor else { return }
-        titleLabel.textColor = highlight ? color : format.titleColor
     }
     
     func validateText(_ text: String?) -> String? {

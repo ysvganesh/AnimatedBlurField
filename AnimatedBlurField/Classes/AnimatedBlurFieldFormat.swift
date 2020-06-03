@@ -11,9 +11,6 @@ import Foundation
 public struct AnimatedBlurFieldFormat {
     
     /// Title always visible
-    public var titleAlwaysVisible = false
-  
-    /// Title always visible
     public var titleInVisibleIfFilled = false
     
     /// Font for title label
@@ -25,20 +22,20 @@ public struct AnimatedBlurFieldFormat {
     /// Font for counter
     public var counterFont = UIFont.systemFont(ofSize: 13, weight: .regular)
     
-    /// Line color
-    public var lineColor = UIColor.lightGray
-    
     /// Title label text color
-    public var titleColor = UIColor.lightGray
+    public var titleColor = UIColor(white: 1.0, alpha: 0.6)
     
     /// TextField text color
-    public var textColor = UIColor.darkGray
+    public var textColor = UIColor.white
+  
+    //When title label becomes placeHolder
+    public var placeHolderColor: UIColor = UIColor(white: 1.0, alpha: 0.8)
     
     /// Title label text uppercased
     public var uppercasedTitles = false
   
     /// Counter text color
-    public var counterColor = UIColor.darkGray
+    public var counterColor = UIColor.white
     
     /// Enable alert
     public var alertEnabled = true
@@ -76,8 +73,11 @@ public struct AnimatedBlurFieldFormat {
     /// Enable counter animation on change
     public var counterAnimation = false
     
-    /// Highlight color when becomes active
-    public var highlightColor: UIColor? = UIColor(displayP3Red: 0, green: 139/255, blue: 96/255, alpha: 1.0)
-    
+    /// VisualEffectView attributes
+    public var visualEffectColorTint = UIColor.white
+    public var visualEffectColorTintAlpha: CGFloat = 0.15
+    public var visualEffectBlurRadius: CGFloat = 10
+    public var visualEffectScale: CGFloat = 1
+  
     public init() {}
 }

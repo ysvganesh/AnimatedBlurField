@@ -78,24 +78,20 @@ extension AnimatedBlurField: UITextViewDelegate {
     
     public func textViewDidBeginEditing(_ textView: UITextView) {
         beginTextViewPlaceholder()
-        if !format.titleAlwaysVisible { animateIn() }
+        animateIn()
         hideAlert()
-        highlightField(true)
         delegate?.animatedFieldDidBeginEditing(self)
     }
     
     public func textViewDidEndEditing(_ textView: UITextView) {
         endTextViewPlaceholder()
-        if !format.titleAlwaysVisible {
-          if isShowingTextViewPlaceHolder {
-              animateOut()
-          }else{
-            if format.titleInVisibleIfFilled {
-              animateOut()
-            }
+        if textView.text.count == 0 {
+            animateOut()
+        }else{
+          if format.titleInVisibleIfFilled {
+            animateOut()
           }
         }
-        highlightField(false)
         delegate?.animatedFieldDidEndEditing(self)
         
         if let error = validateText(textView.text) {
