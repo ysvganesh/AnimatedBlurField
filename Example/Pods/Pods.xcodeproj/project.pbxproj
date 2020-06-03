@@ -23,7 +23,7 @@
 		472D1D3A2462DF9C005FAAFA /* AnimatedBlurFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472D1D2C2462DF9B005FAAFA /* AnimatedBlurFieldType.swift */; };
 		472D1D3B2462DF9C005FAAFA /* AnimatedBlurField+TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472D1D2D2462DF9B005FAAFA /* AnimatedBlurField+TextViewDelegate.swift */; };
 		472D1D3C2462DF9C005FAAFA /* AnimatedBlurField+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472D1D2E2462DF9C005FAAFA /* AnimatedBlurField+Protocols.swift */; };
-		476B7858246848270079E29D /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B7857246848270079E29D /* VisualEffectView.swift */; };
+		47AA85182487803100742F13 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AA85172487803100742F13 /* VisualEffectView.swift */; };
 		497CBB9E80BB997E4BBC4B2865701B1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		4AC36CAA35FC882A328C6B78E85633F2 /* AnimatedBlurField-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 753407B7E1182231C2E6F99808EE50D6 /* AnimatedBlurField-dummy.m */; };
 		A1AEFA42EA5D698F0D8BC0F5F944CAC4 /* Pods-AnimatedBlurField_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E7B686CA80910AFFB36A78E8EA0A2F9E /* Pods-AnimatedBlurField_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -74,7 +74,7 @@
 		472D1D2C2462DF9B005FAAFA /* AnimatedBlurFieldType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedBlurFieldType.swift; path = AnimatedBlurField/Classes/AnimatedBlurFieldType.swift; sourceTree = "<group>"; };
 		472D1D2D2462DF9B005FAAFA /* AnimatedBlurField+TextViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimatedBlurField+TextViewDelegate.swift"; path = "AnimatedBlurField/Classes/AnimatedBlurField+TextViewDelegate.swift"; sourceTree = "<group>"; };
 		472D1D2E2462DF9C005FAAFA /* AnimatedBlurField+Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimatedBlurField+Protocols.swift"; path = "AnimatedBlurField/Classes/AnimatedBlurField+Protocols.swift"; sourceTree = "<group>"; };
-		476B7857246848270079E29D /* VisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		47AA85172487803100742F13 /* VisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VisualEffectView.swift; path = AnimatedBlurField/Classes/VisualEffectView.swift; sourceTree = "<group>"; };
 		61DC2F9DA5AA957718CF0C794DE2A423 /* Pods-AnimatedBlurField_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AnimatedBlurField_Example-dummy.m"; sourceTree = "<group>"; };
 		680651DE41E9B7F460E25042E7530886 /* Pods_AnimatedBlurField_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnimatedBlurField_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7384BCC8E102472748B19D7BC651BF55 /* Pods-AnimatedBlurField_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AnimatedBlurField_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 				472D1D212462DF9B005FAAFA /* AnimatedBlurFieldAlertPosition.swift */,
 				472D1D2A2462DF9B005FAAFA /* AnimatedBlurFieldFormat.swift */,
 				472D1D2C2462DF9B005FAAFA /* AnimatedBlurFieldType.swift */,
-				476B7857246848270079E29D /* VisualEffectView.swift */,
+				47AA85172487803100742F13 /* VisualEffectView.swift */,
 				472D1D232462DF9B005FAAFA /* Extensions */,
 				472D1D282462DF9B005FAAFA /* Utils */,
 				EBF1378D31C48FD714DE5972B8DABA17 /* Pod */,
@@ -448,7 +448,7 @@
 				472D1D392462DF9C005FAAFA /* AnimatedBlurField+TextFieldDelegate.swift in Sources */,
 				472D1D332462DF9C005FAAFA /* Date+Format.swift in Sources */,
 				472D1D3B2462DF9C005FAAFA /* AnimatedBlurField+TextViewDelegate.swift in Sources */,
-				476B7858246848270079E29D /* VisualEffectView.swift in Sources */,
+				47AA85182487803100742F13 /* VisualEffectView.swift in Sources */,
 				472D1D3A2462DF9C005FAAFA /* AnimatedBlurFieldType.swift in Sources */,
 				472D1D3C2462DF9C005FAAFA /* AnimatedBlurField+Protocols.swift in Sources */,
 				472D1D312462DF9C005FAAFA /* AnimatedBlurFieldAlertPosition.swift in Sources */,
