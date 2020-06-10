@@ -390,6 +390,7 @@ open class AnimatedBlurField: UIView {
         datePicker?.maximumDate = maxDate
         datePicker?.minimumDate = minDate
         datePicker?.setValue(format.textColor, forKey: "textColor")
+        datePicker?.setValue(format.pickerBackgoundColor, forKey: "backgroundColor")
         
         let toolBar = UIToolbar(target: self, selector: #selector(didChooseDatePicker))
 		
@@ -403,6 +404,7 @@ open class AnimatedBlurField: UIView {
         numberPicker?.dataSource = self
         numberPicker?.delegate = self
         numberPicker?.setValue(format.textColor, forKey: "textColor")
+        numberPicker?.setValue(format.pickerBackgoundColor, forKey: "backgroundColor")
         
         numberOptions += minNumber...maxNumber
         if let index = numberOptions.firstIndex(where: {$0 == defaultNumber}) {

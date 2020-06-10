@@ -31,6 +31,9 @@ public struct AnimatedBlurFieldFormat {
     //When title label becomes placeHolder
     public var placeHolderColor: UIColor = UIColor(white: 1.0, alpha: 0.8)
     
+    //When title label becomes placeHolder
+    public var pickerBackgoundColor: UIColor = UIColor(white: 0.0, alpha: 0.8)
+  
     /// Title label text uppercased
     public var uppercasedTitles = false
   
