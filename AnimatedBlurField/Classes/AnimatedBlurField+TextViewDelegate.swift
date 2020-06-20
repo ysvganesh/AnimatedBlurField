@@ -74,6 +74,7 @@ extension AnimatedBlurField: UITextViewDelegate {
     public func textViewDidChange(_ textView: UITextView) {
         resizeTextViewHeight()
         updateCounterLabel()
+        delegate?.animatedFieldDidChange(self)
     }
     
     public func textViewDidBeginEditing(_ textView: UITextView) {

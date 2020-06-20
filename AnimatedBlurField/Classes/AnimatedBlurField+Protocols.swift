@@ -167,6 +167,14 @@ public protocol AnimatedBlurFieldDelegate: class {
      - parameter value: alert text
      */
     func animatedField(_ animatedField: AnimatedBlurField, didShowAlertMessage text: String)
+  
+    /**
+     ------------------------------------------------------------------------------------------
+     Is called when text field changed
+     ------------------------------------------------------------------------------------------
+     - parameter animatedField: current animatedField
+     */
+    func animatedFieldDidChange(_ animatedField: AnimatedBlurField)
 }
 
 public extension AnimatedBlurFieldDelegate {
@@ -192,6 +200,10 @@ public extension AnimatedBlurFieldDelegate {
     }
     
     func animatedField(_ animatedField: AnimatedBlurField, didShowAlertMessage text: String) {
+        // Optional
+    }
+  
+    func animatedFieldDidChange(_ animatedField: AnimatedBlurField) {
         // Optional
     }
 }

@@ -198,6 +198,10 @@ extension ViewController: AnimatedBlurFieldDelegate {
     func animatedField(_ animatedField: AnimatedBlurField, didChangePickerValue value: String) {
         numberAnimatedField.text = value
     }
+  
+    func animatedFieldDidChange(_ animatedField: AnimatedBlurField) {
+        print("text: \(animatedField.text ?? "")")
+    }
 }
 
 extension ViewController: AnimatedBlurFieldDataSource {
